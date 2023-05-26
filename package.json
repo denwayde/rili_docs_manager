@@ -1,0 +1,23 @@
+{
+  "name": "rili_docs_manager",
+  "version": "1.0.0",
+  "description": "RBLI document manager and student database manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denwayde/rili_docs_manager.git"
+  },
+  "author": "Dinis Gibadullin Rafikovich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denwayde/rili_docs_manager/issues"
+  },
+  "homepage": "https://github.com/denwayde/rili_docs_manager#readme",
+  "devDependencies": {
+    "bootstrap": "^5.2.3",
+    "express": "^4.18.2"
+  }
+}
