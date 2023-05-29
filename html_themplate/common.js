@@ -9,8 +9,9 @@ let dinamicStdTableRow = function(a){
             <td>+7963254789${Math.round(Math.random()*10)}</td>
             <td>mail@mail.ru</td>
             <td>
-                <button type="button" class="btn btn-outline-primary">Редактировать</button>
                 <button type="button" class="btn btn-outline-danger">Удалить</button>
+                <button type="button" class="btn btn-outline-primary">Редактировать</button>
+                <button type="button" class="btn btn-outline-success">Выбрать</button>
             </td>
             </tr>
         `
