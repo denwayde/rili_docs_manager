@@ -1,23 +1,26 @@
-let tableBody = document.querySelector("#students-list .students-tbody")
-let stdTableRow = document.querySelector("#students-list .students-tbody tr")
+let authorizeBtn = document.querySelector("#authorize")
+let divForm = document.querySelector("#divForm")
 
-let dinamicStdTableRow = function(a){
+function showMessages(style_class, text){
     return `
-            <tr>
-            <th scope="row">${a}</th>
-            <td>Иванов Иван Иванович</td>
-            <td>+7963254789${Math.round(Math.random()*10)}</td>
-            <td>mail@mail.ru</td>
-            <td>
-                <button type="button" class="btn btn-outline-danger">Удалить</button>
-                <button type="button" class="btn btn-outline-primary">Редактировать</button>
-                <button type="button" class="btn btn-outline-success">Выбрать</button>
-            </td>
-            </tr>
+            
         `
 }
 
+authorizeBtn.addEventListener('click', (e)=>{
+    
+    e.preventDefault()
+    let xhr = new XMLHttpRequest()
+    let url = '/login' //tut budet url adress v kotorii mi doljni budem otpravlyat vvedennii nomer telefona skoree vsego eto budet kak to vzoimodeistvovat s node ili nakaplivatsya v massiv v kitorom budet nomer telefona i password i potom otpravka i sverka s bd
+    let phoneNum = document.querySelector('#phoneNumber').value
+    let body = {
+        phone: phoneNum
+    }
+    xhr.open('POST', url, true)
+    body = JSON.stringify(body)
+    xhr.send(body)
+    
+    xhr.onerror = () => {}
+})
+//window.location.replace("http://stackoverflow.com")
 
-for(let i = 1; i<=20; i++){
-    tableBody.insertAdjacentHTML('beforeend', dinamicStdTableRow(i))
-}
