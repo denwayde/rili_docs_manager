@@ -1,6 +1,9 @@
 let authorizeBtn = document.querySelector("#authorize")
 let divForm = document.querySelector("#divForm")
 let phoneNum = document.querySelector('#phoneNumber')
+let pass = document.querySelector('#pas')
+//let authorize_form = document.querySelector('#authorize_form')
+
 
 function showMessages(style_class, text){
     return `
@@ -47,21 +50,38 @@ phoneNum.addEventListener('input', ()=>{
 authorizeBtn.addEventListener('click', (e)=>{
     
     e.preventDefault()
-    // let xhr = new XMLHttpRequest()
-    // let url = '/login' //tut budet url adress v kotorii mi doljni budem otpravlyat vvedennii nomer telefona skoree vsego eto budet kak to vzoimodeistvovat s node ili nakaplivatsya v massiv v kitorom budet nomer telefona i password i potom otpravka i sverka s bd
+    let xhr = new XMLHttpRequest()
+    let url = '/' //tut budet url adress v kotorii mi doljni budem otpravlyat vvedennii nomer telefona skoree vsego eto budet kak to vzoimodeistvovat s node ili nakaplivatsya v massiv v kitorom budet nomer telefona i password i potom otpravka i sverka s bd
     
-    // let body = {
-    //     phone: phoneNum.value
-    // }
-    // xhr.open('POST', url, true)
-    // body = JSON.stringify(body)
-    // xhr.send(body)
+    // let form_data = new FormData(authorize_form)
+    // console.log(form_data)
+    form_data = {
+        phone: phoneNum.value,
+        pass: pass.value
+    }
+    xhr.open('POST', url, true)
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    form_data = JSON.stringify(form_data)
+    xhr.send(form_data)
+    //console.log(form_data)
     //window.location.href = '/pas' //esli vse horosho to nujno perehodit na druguu ssil
+    xhr.addEventListener('readystatechange', (e)=>{
+        if(xhr.readyState==4){
+            if(xhr.response=='succes'){
+                authorizeBtn.classList.add('disabled')
+                phoneNum.value = ''
+                pass.value = ''
+            }
+        }
+    })
     
-    // xhr.onerror = () => {
-    //     phoneNum.classList.add('is-invalid')
-    //     phoneNum.insertAdjacentHTML('afterend', showMessages('invalid-feedback', 'Запрос не удался'))
-    // }
+    xhr.onerror = () => {
+        phoneNum.classList.add('is-invalid')
+        phoneNum.insertAdjacentHTML('afterend', showMessages('invalid-feedback', 'Запрос не удался'))
+    }
 })
+
+
+
 //window.location.replace("http://stackoverflow.com")
 
