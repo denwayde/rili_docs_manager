@@ -69,6 +69,7 @@ authorizeBtn.addEventListener('click', (e)=>{
         if(xhr.readyState==4){
             if(xhr.response=='succes'){
                 authorizeBtn.classList.add('disabled')
+                phoneNum.classList.remove('is-valid')
                 phoneNum.value = ''
                 pass.value = ''
             }
